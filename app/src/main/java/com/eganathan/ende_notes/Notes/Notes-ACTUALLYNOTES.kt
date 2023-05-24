@@ -18,4 +18,25 @@ interface NotesACTUALLYNOTES {
       *
       *
       * */
+
+
+
+    /* DEPENDENCY INJECTION
+    *  Build a application class in the root package
+    *  extend the class to Application() add a @HiltAndroidApp annotation
+    *  add to the manifest file android:name=".NoteApp" within the application tag
+    *  create provide modules- AppModule object and annotate it with @Module and @InstallIn(SingletonComponent::class)
+    * inside that create singleton provoders
+    *
+    * example:
+    *
+    *
+    *
+    * */
+
+    /*
+    * DI -
+    * 48.01 TIME STAMP: https://youtu.be/8YPXv7xKh2w
+    *
+    * */
 }

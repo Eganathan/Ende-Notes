@@ -10,6 +10,7 @@ import com.eganathan.ende_notes.ui.theme.TwillightLavander
 @Entity
 data class Note(
     val title: String,
+    val timeStamp:Long,
     val content: String,
     val color: Int,
     @PrimaryKey val id: Int? = null
