@@ -20,7 +20,6 @@ interface NotesACTUALLYNOTES {
       * */
 
 
-
     /* DEPENDENCY INJECTION
     *  Build a application class in the root package
     *  extend the class to Application() add a @HiltAndroidApp annotation
@@ -34,9 +33,19 @@ interface NotesACTUALLYNOTES {
     *
     * */
 
-    /*
-    * DI -
-    * 48.01 TIME STAMP: https://youtu.be/8YPXv7xKh2w
-    *
+    /* VM Classes: are directly coupled to the state snd is in the presentation layer
+    *48.01 TIME STAMP: https://youtu.be/8YPXv7xKh2w
     * */
+
+    /***
+     * Planing a view model must could be done in a whay that helps us from the spegatii code
+     *  [1] note down all the state we are assosiated to the screen that can be wrapped into a single data class here for example everything thats related to notes screen
+     *     here for example we can create a data class with val list of notes, val ordertpye  val show orderwidget etc....
+     *  [2]note down all the events the assosiated screen
+     *      and wrap into a sealed class then in a function named onEvent handel it using when here we can use the use cases and or use the logic for state managemente
+     *
+     *
+     *
+     *
+     * ***/
 }
