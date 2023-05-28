@@ -7,6 +7,7 @@ import com.eganathan.ende_notes.feature_note.data.repository.NoteRepositoryImpl
 import com.eganathan.ende_notes.feature_note.domain.repository.NoteRepository
 import com.eganathan.ende_notes.feature_note.domain.use_cases.AddNoteUseCase
 import com.eganathan.ende_notes.feature_note.domain.use_cases.DeleteNoteUserCase
+import com.eganathan.ende_notes.feature_note.domain.use_cases.GetNoteUseCase
 import com.eganathan.ende_notes.feature_note.domain.use_cases.GetNotesUseCase
 import com.eganathan.ende_notes.feature_note.domain.use_cases.NoteUseCases
 import dagger.Module
@@ -22,9 +23,9 @@ object AppModule {
     @Singleton
     fun provideNoteDataBase(app: Application): NoteDataBase {
         return Room.databaseBuilder(
-            context = app,
-            klass = NoteDataBase::class.java,
-            name = NoteDataBase.DATABASE_NAME
+            app,
+            NoteDataBase::class.java,
+            NoteDataBase.DATABASE_NAME
         ).build()
     }
 
@@ -40,7 +41,8 @@ object AppModule {
         return NoteUseCases(
             getNotesUseCase = GetNotesUseCase(repository),
             deleteNoteUseCase = DeleteNoteUserCase(repository),
-            addNoteUseCase = AddNoteUseCase(repository)
+            addNoteUseCase = AddNoteUseCase(repository),
+            getNoteUseCase = GetNoteUseCase(repository)
         )
     }
 }

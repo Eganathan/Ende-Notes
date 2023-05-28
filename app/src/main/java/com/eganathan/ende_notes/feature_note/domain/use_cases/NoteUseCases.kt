@@ -5,5 +5,6 @@ package com.eganathan.ende_notes.feature_note.domain.use_cases
 data class NoteUseCases(
     var getNotesUseCase: GetNotesUseCase,
     var deleteNoteUseCase: DeleteNoteUserCase,
-    val addNoteUseCase : AddNoteUseCase
+    val addNoteUseCase: AddNoteUseCase,
+    val getNoteUseCase: GetNoteUseCase
 )

@@ -24,6 +24,7 @@ import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
@@ -34,8 +35,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.eganathan.ende_notes.feature_note.domain.model.Note
 import com.eganathan.ende_notes.feature_note.presentation.notes.components.NoteItem
 import com.eganathan.ende_notes.feature_note.presentation.notes.components.OrderSection
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -112,6 +115,13 @@ fun NotesScreen(
                         note = it,
                         onDeleteClick = {
                             viewModel.onEvent(NoteEvent.DeleteEvent(it))
+                            scope.launch {
+                               val result = scaffoldState.snackbarHostState.showSnackbar("Note Deleted!", actionLabel = "undo")
+                                if(result == SnackbarResult.ActionPerformed)
+                                {
+                                  viewModel.onEvent(NoteEvent.RestoreNote)
+                                }
+                            }
                         })
                 }
             }
