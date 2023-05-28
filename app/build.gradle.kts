@@ -1,9 +1,8 @@
-import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
+    kotlin("kapt")
     id("com.google.dagger.hilt.android")
 }
 
@@ -40,6 +39,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    kotlin {
+        jvmToolchain(8)
+    }
     buildFeatures {
         compose = true
     }
@@ -62,8 +64,11 @@ dependencies {
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
     implementation("com.android.support:support-annotations:28.0.0")
+
+    //m3
+    implementation("androidx.compose.material3:material3:1.1.0")
+    implementation("androidx.compose.material3:material3-window-size-class:1.1.0")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
@@ -75,19 +80,25 @@ dependencies {
 
     // Compose dependencies
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
-    implementation ("androidx.navigation:navigation-compose:2.6.0-rc01")
-    implementation ("androidx.compose.material:material-icons-extended")
-    implementation ("androidx.hilt:hilt-navigation-compose:1.1.0-alpha01")
+    implementation("androidx.navigation:navigation-compose:2.6.0-rc01")
+    implementation("androidx.compose.material:material-icons-extended")
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0-alpha01")
 
     // Coroutines
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4")
 
-    //Dagger - Hilt
-    implementation ("com.google.dagger:hilt-android:2.43.1")
-    kapt ("com.google.dagger:hilt-android-compiler:2.43.1")
-    implementation ("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
+    //hilt
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
+//    implementation ("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
     kapt ("androidx.hilt:hilt-compiler:1.0.0")
+
+    implementation  ("com.google.dagger:dagger:2.44")
+    annotationProcessor ("com.google.dagger:dagger-compiler:2.44")
+    implementation ("com.google.dagger:dagger-android:2.44")
+    implementation ("com.google.dagger:dagger-android-support:2.44")
+    annotationProcessor ("com.google.dagger:dagger-android-processor:2.44")
 
     // Room
     implementation ("androidx.room:room-runtime:2.5.1")
@@ -96,4 +107,9 @@ dependencies {
     // Kotlin Extensions and Coroutines support for Room
     implementation ("androidx.room:room-ktx:2.5.1")
 
+}
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }

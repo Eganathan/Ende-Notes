@@ -8,7 +8,6 @@ import com.eganathan.ende_notes.feature_note.domain.model.Note
     entities = [Note::class],
     version = 1
 )
-
 abstract class NoteDataBase : RoomDatabase() {
 
     abstract val noteDao: NoteDao
